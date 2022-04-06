@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>各項網頁功能的建置 (Part II)</title>
+    <link href="stylesheets/greefies/style.css" rel="stylesheet" />
+    <link href="stylesheets/jquery-ui-1.12.1/ui-lightness/jquery-ui.min.css" rel="stylesheet" />
+
+    <link href="stylesheets/smartmenus-1.0.0/css/sm-core-css.css" rel="stylesheet" />
+    <link href="stylesheets/smartmenus-1.0.0/css/sm-blue/sm-blue.css" rel="stylesheet" />
+
+    <style>
+        /* 用於功能表|menu */
+        #right_nav .ui-menu {
+            background: #50a842; /* 取消jQuery UI之Menu<ul>的背景圖並恢復greefies之<ul>的背景顏色*/
+        }
+
+        /* 用於按鈕|button */
+        #main_container .green_box .read_more {
+            background-image: none; /* 取消greefies之.read_more的背景圖*/
+            width: auto; /* 取消greefies之.read_more的width*/
+        }
+
+        /* 用於複選框|單選鈕(controlgroup)與下拉選單(selectmenu) */
+        #left_nav fieldset {
+            width: 100%; /* 設定fieldset之寬度比照父元素 */
+        }
+
+        .ui-icon-background, .ui-state-active .ui-icon-background {
+            /*background-color: white;*/ /* 覆寫原因: checkbox的打勾圖示易與背景顏色"混在一起" */
+        }
+
+        /* 用於AutoComplete */
+        .ui-autocomplete-loading {
+            background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+        }
+
+        /* 用於smartmenus外掛程式 */
+        #mainmenu_wrapper {
+            /* 套用greefies之相關設定 */
+            width: 900px;
+            height: 42px;
+            padding: 0px;
+            clear: left;
+        }
+
+        .sm-blue {
+            /* 功能表列(ul#mainmenu)之背景顏色套用greefies之相關設定 */
+            background: #416271;
+            padding: 0 0 0 230px;
+            border-radius: 0px;
+        }
+
+            .sm-blue a {
+                /* 功能表列底下所有<li>下的<a>之字型套用greefies之相關設定 */
+                font-family: Arial, Helvetica, sans-serif !important;
+                font-size: 13px !important;
+                font-weight: normal !important;
+                /*功能表列底下所有<li>下的<a>之padding捨棄.sm-blue a,.sm-blue a.highlighted, .sm-blue a:hover 等之設定值*/
+                padding: 6px 24px 13px 24px !important;
+            }
+
+            .sm-blue > li > a {
+                /* 功能表列之最上層功能表之背景顏色套用greefies之相關設定 */
+                background: #416271;
+            }
+
+            .sm-blue > li:first-child > a {
+                /* 功能表列之最上層第一個<a>之border-radius取消圓弧邊框設定 */
+                border-radius: 0;
+            }
+
+            .sm-blue > li:last-child > a {
+                /* 功能表列之最上層最後一個<a>之border-radius取消圓弧邊框設定 */
+                border-radius: 0 !important;
+            }
+    </style>
+    <script src="javascripts/jquery-3.6.0.min.js"></script>
+    <script src="javascripts/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="javascripts/smartmenus-1.0.0/jquery.smartmenus.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //功能表
+            $("#menu1").menu();
+
+            //按鈕
+            $("#button1").button( //Note: The button widget was rewritten in 1.12.
+                {
+                    icon: "ui-icon-lightbulb", //參考 http://api.jqueryui.com/theming/icons/
+                    //<input type=button/submit/reset>元素不支援icon.
+                    iconPosition: "beginning", //設定圖示位置: beginning(預設)|end|top|bottom
+                    showLabel: true //設定按鈕是否顯示文字: true(預設)|fasle
+                });
+
+            //複選框|單選鈕
+            //$("#left_nav fieldset input").checkboxradio(); //jQuery UI 1.12 新API(水平checkbox|radio間會有間隔)(舊API: button())
+            $("#left_nav fieldset").controlgroup({ direction: "vertical" }); //jQuery UI 1.12 新API(舊API: buttonset())
+
+            //下拉選單
+            $("#left_nav #select1").selectmenu({
+                //width: 200, //The width of the menu, in pixels.(亦可設定如 '50%' 或 '200px')
+                icons: { button: "ui-icon-circle-triangle-s" }  //預設 "ui-icon-triangle-1-s"
+            });
+
+            //AutoComplete功能進階
+            $(".search_input").autocomplete({
+                source: "/AjaxServer.aspx", //執行時jQuery UI會自動加上請求參數term, 例如: AjaxServer2.aspx?term=使用者輸入之文字
+                delay: 100, //The delay in milliseconds between when a keystroke occurs and when a search is performed.(default:300)
+                minLength: 2 //The minimum number of characters a user must type before a search is performed.(default:1)
+            })
+
+            //Smartmenus外掛程式
+            $("#mainmenu_wrapper #mainmenu").smartmenus();
+        })
+    </script>
+</head>
+
+<body>
+    <div id="main_container">
+        <div id="header">
+            <div id="logo"><a href="home.html"><img src="stylesheets/greefies/images/logo.gif" alt="" title="" border="0" /></a></div>
+
+            <div id="mainmenu_wrapper">
+                <ul id="mainmenu" class="sm sm-blue">
+                    <li>
+                        <a href="#" title="">home</a>
+                        <ul>
+                            <li><a href="#" title="">中心簡介</a></li>
+                            <li><a href="#" title="">最新消息</a></li>
+                            <li><a href="#" title="">常見問題</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="current" href="#" title="">services</a>
+                        <ul>
+                            <li><a href="#" title="">課程總覽</a></li>
+                            <li><a href="#" title="">企業包班</a></li>
+                            <li><a href="#" title="">考試中心</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="">clients</a></li>
+                    <li><a href="#" title="">testimonials</a></li>
+                    <li><a href="#" title="">contact us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="green_box">
+            <div class="clock">
+                <img src="stylesheets/greefies/images/clock.png" alt="" title="" />
+            </div>
+            <div class="text_content">
+                <h1>What is your biological clock?</h1>
+                <p class="green">
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                    officia deserunt mollit anim id est laborum."
+                </p>
+                <div class="read_more"><a href="#" id="button1">read more</a></div>
+            </div>
+
+            <div id="right_nav">
+                <!----------------------------------------------------------------->
+                <ul id="menu1">
+                    <li>
+                        <a href="#">課程總覽</a>
+                        <ul>
+                            <li><a href="#">程式開發</a></li>
+                            <li><a href="#">資訊安全</a></li>
+                            <li><a href="#">網路通訊</a></li>
+                            <li><a href="#">雲端運算</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">近期課程</a>
+                        <ul>
+                            <li><a href="#">PHP+MySQL動態網站開發實務</a></li>
+                            <li><a href="#">JavaScript+jQuery 動態網頁設計</a></li>
+                            <li><a href="#">Android行動應用開發SOHO養成班</a></li>
+                            <li><a href="#">CSS網頁精修班</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">客戶服務</a>
+                        <ul>
+                            <li><a href="#">官方網站</a></li>
+                            <li><a href="#">電子郵件</a></li>
+                            <li><a href="#">行動App</a></li>
+                            <li class="ui-state-disabled"><a href="#">客服電話</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">最新消息</a>
+                    </li>
+                    <li>
+                        <a href="#">上課須知</a>
+                    </li>
+                </ul>
+                <!----------------------------------------------------------------->
+            </div>
+
+        </div><!--end of green box-->
+
+        <div id="main_content">
+            <div id="left_content">
+                <h2>Welcome to greefies</h2>
+                <p>
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.
+                </p>
+
+                <div id="left_nav">
+                    <!----------------------------------------------------------------->
+                    <fieldset>
+                        <legend>您選擇的付款方式</legend>
+                        <label for="pt1">
+                            現 金
+                            <input type="radio" name="payType" id="pt1" checked="checked" />
+                        </label>
+                        <label for="pt2">
+                            信用卡
+                            <input type="radio" name="payType" id="pt2" />
+                        </label>
+                        <label for="pt3">
+                            銀行匯款
+                            <input type="radio" name="payType" id="pt3" />
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>您選擇的收貨時段</legend>
+                        <select name="select1" id="select1">
+                            <option value="morning1">上午 06:00~09:00</option>
+                            <option value="morning2">上午 09:00~12:00</option>
+                            <option value="afternoon1">下午 12:00~15:00</option>
+                            <option value="afternoon1">下午 15:00~18:00</option>
+                            <option value="evening">晚上 18:00~21:00</option>
+                        </select>
+                    </fieldset>
+                    <!----------------------------------------------------------------->
+                </div>
+
+                <p class="clear">
+                    <img src="stylesheets/greefies/images/pic1.jpg" alt="" title="" class="left_img" />
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                </p>
+                <div class="read_more_link"><a href="#">read more</a></div>
+
+            </div><!--end of left content-->
+
+            <div id="right_content">
+                <h2>Our Products</h2>
+                <div class="products_box">
+                    <img src="stylesheets/greefies/images/box_icon.gif" alt="" title="" class="box_img" />
+                    <h3>Dolore magna aliqua</h3>
+                    <p>
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.
+                    </p>
+                    <div class="read_more_link"><a href="#">read more</a></div>
+                </div>
+
+                <div class="products_box">
+                    <img src="stylesheets/greefies/images/box_icon.gif" alt="" title="" class="box_img" />
+                    <h3>Dolore magna aliqua</h3>
+                    <p>
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.
+                    </p>
+                    <div class="read_more_link"><a href="#">read more</a></div>
+                </div>
+
+                <div class="search_box">
+                    <div class="search_title">Dolore magna aliqua</div>
+                    <input class="search_input" type="text" />
+                    <input src="stylesheets/greefies/images/search.gif" class="submit" type="image" />
+                    <div class="subsearch">
+                        "Lorem ipsum dolor sit amet.
+                    </div>
+                </div>
+
+                <div class="contact_information">
+                    <h4>Free Customers Support</h4>
+                    <p>
+                        <img src="stylesheets/greefies/images/phone_icon.gif" alt="" title="" class="box_img" />
+                        0700 679 122 489<br />
+                        0700 679 122 489
+                    </p>
+                    <br /><br />
+                    <p>
+                        <img src="stylesheets/greefies/images/contact_icon.gif" alt="" title="" class="box_img" />
+                        info@company.com<br />
+                        contact@company.com
+                    </p>
+
+                </div>
+
+            </div><!--end of right content-->
+
+            <div style=" clear:both;"></div>
+        </div><!--end of main content-->
+
+        <div id="footer">
+            <div class="copyright">
+                <a href="home.html">
+                    <img src="stylesheets/greefies/images/footer_logo.gif" alt="" title="" border="0" />
+                </a>
+            </div>
+            <div class="footer_links">
+                <a href="#">About us</a>
+                <a href="privacy.html">Privacy policy</a>
+                <a href="contact.html">Contact us </a>
+                <a href="http://www.wix.com/start/matrix/?utm_campaign=af_webpagedesign.com.au&amp;experiment_id=Greefies">Create your own free web site</a>
+            </div>
+        </div>
+
+    </div> <!--end of main container-->
+
+</body>
+</html>

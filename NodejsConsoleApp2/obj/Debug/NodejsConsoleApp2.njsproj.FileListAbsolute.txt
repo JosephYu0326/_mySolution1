@@ -1,0 +1,3 @@
+G:\我的雲端硬碟\前端工程師\js進階\_node\_workspace\_mySolution1\NodejsConsoleApp2\obj\Debug\NodejsConsoleApp2.njsproj.AssemblyReference.cache
+G:\我的雲端硬碟\前端工程師\js進階\_node\_workspace\_mySolution1\NodejsConsoleApp2\obj\Debug\NodejsConsoleApp2.njsproj.CoreCompileInputs.cache
+G:\我的雲端硬碟\前端工程師\js進階\_node\_workspace\_mySolution1\NodejsConsoleApp2\bin\Microsoft.NodejsTools.WebRole.dll

@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>產品資料</title>
+    <link href="stylesheets/greefies/style.css" rel="stylesheet" />
+    <link href="stylesheets/jquery-ui-1.12.1/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="stylesheets/bootstrap-5.0.2/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        /* -----jQueryUI Dialog: 隱藏TitleBar & 縮小按鈕字型大小 -----*/
+        .ui-dialog-titlebar {
+            display: none;
+        }
+        .ui-dialog-buttonset {
+            font-size: 0.8em;
+        }
+        /* -----產品資料修改對話框: lable文字右靠(因boostrap的原設定被其他樣式表覆寫了) -----*/
+        #upd_prod-ajaxform label {
+            text-align: left;
+        }
+        /*---------------------------------------------------------*/
+    </style>
+    <script src="javascripts/jquery-3.6.0.min.js"></script>
+    <script src="javascripts/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            //建立「資料刪除對話框」
+            var dialog1 = $("<div>您確定要刪除嗎?</div>").dialog({
+                autoOpen: false, modal: true,
+                buttons: [
+                    {
+                        text: '確定',
+                        click: function () {
+                            //關閉dialog
+                            $(this).dialog('close');//此處this: dialog之<div>
+                            var delLink = $(this).data('delLink'); //delLink變數為目前被點選的 <a class='delete' > 元素
+                            var productid = $(delLink).attr('data-id');
+                            $.ajax({
+                                method: 'get',
+                                url: '/ta1-delprod',
+                                data: { "productid": productid },
+                                dataType: 'json',
+                                success: function (data) {
+
+                                    if (data.result == 'success') {
+                                        //刪除目前被點選的當行
+                                        $(delLink).closest('tr').remove();
+
+                                        //使用bootstrap's inline alert
+                                        $("#alert1").html(`<strong>資料刪除(${data.rowCount}筆)成功...</strong>`)
+                                            .addClass('alert-primary show');
+                                    }
+                                    else {
+                                        $("#alert1").html(`<strong>資料刪除失敗...</strong><h6>${data.errMsg}</h6>`)
+                                            .addClass('alert-danger show');
+                                    }
+
+                                    //二秒後關閉inline alert
+                                    window.setTimeout(function () {
+                                        $("#alert1").html('').removeClass('alert-primary alert-danger show');
+                                    }, 2000);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    //使用bootstrap's inline alert
+                                    $("#alert1").html(`<strong>您的請求發生錯誤了...</strong><h6>${textStatus ? ('狀態: ' + textStatus) : ''}${errorThrown ? ('<br/>' + errorThrown) : ''}</h6>`)
+                                        .addClass('alert-danger show');
+
+                                    //二秒後關閉inline alert
+                                    window.setTimeout(function () {
+                                        $("#alert1").html('').removeClass('alert-danger show');
+                                    }, 2000);
+                                }
+                            });
+                        }
+                    },
+                    {
+                        text: '取消',
+                        click: function () {
+                            //關閉dialog
+                            $(this).dialog('close');
+                        }
+                    }
+                ]
+            });
+            //建立「資料修改對話框」
+            var dialog2 = $("<div></div>").load("/ta1-upd_prod-ajaxform.html  #div1")
+                .dialog({
+                    autoOpen: false, modal: true, width: 600,
+                    open: function () {
+                        var updLink = $(this).data('updLink'); //updLink變數為目前被點選的 <a class='update' > 元素
+                        var jqTr = $(updLink).closest('tr'); //找updLink的最親近的ancestor元素
+                        var productid = $("td:eq(0)", jqTr).text();
+                        var productname = $("td:eq(1)", jqTr).text();
+                        var categoryid = $("td:eq(2)", jqTr).text();
+                        var unitprice = $("td:eq(4)", jqTr).text();
+                        var unitsinstock = $("td:eq(5)", jqTr).text();
+                        //自動載入原始資料至資料修改對話框
+                        $("#div1 form :text:eq(0)").val(productid);
+                        $("#div1 form :text:eq(1)").val(productname);
+                        $("#div1 form :text:eq(2)").val(categoryid);
+                        $("#div1 form :text:eq(3)").val(unitprice);
+                        $("#div1 form :text:eq(4)").val(unitsinstock);
+                    },
+                    buttons: [
+                        {
+                            text: '關閉',
+                            click: function () {
+                                //關閉dialog
+                                $(this).dialog('close');
+                                //重新載入目前頁面
+                                location.reload();
+                            }
+                        }
+                    ]
+                });
+            //註冊「資料修改對話框」內之'<form id="upd_prod-ajaxform">之submit事件處理器
+            $(document).on('submit', '#upd_prod-ajaxform', function () {
+                $.ajax({
+                    method: 'get',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),//注意: serialize()不會處理disabled fields
+                    dataType: 'json',
+                    success: function (data) {
+                        //使用bootstrap's inline alert
+                        if (data.result == 'success')
+                            $("#updform-alert1").html(`<strong>資料修改(${data.rowCount}筆)成功...</strong>`).addClass('alert-primary show');
+                        else
+                            $("#updform-alert1").html(`<strong>資料修改失敗...</strong><h6>${data.errMsg}</h6>`).addClass('alert-danger show');
+                        //二秒後關閉inline alert
+                        window.setTimeout(function () {
+                            $("#updform-alert1").html('').removeClass('alert-primary alert-danger show');
+                        }, 2000);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        //使用bootstrap's inline alert
+                        $("#updform-alert1").html(`<strong>您的請求發生錯誤了...</strong><h6>${textStatus ? ('狀態: ' + textStatus) : ''}${errorThrown ? ('<br/>說明:' + errorThrown) : ''}</h6>`).addClass('alert-danger show');
+                        //二秒後關閉inline alert
+                        window.setTimeout(function () {
+                            $("#updform-alert1").html('').removeClass('alert-danger show');
+                        }, 2000);
+                    }
+                });
+                return false;
+            });
+            //註冊「刪除」與「修改」按鈕的click事件處理器
+            $("td a").click(function () {
+                if ($(this).attr('class') == 'delete') {
+                    dialog1.data('delLink', this).dialog('open');  //.data()用以在dialog1元素中夾帶資料
+                    //.data( key, value ): Store arbitrary data associated with the matched elements.
+                }
+                else if ($(this).attr('class') == 'update') {
+                    dialog2.data('updLink', this).dialog('open');
+                    //.data( key, value ): Store arbitrary data associated with the matched elements.
+                }
+                return false;
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container border shadow mt-5">
+        <div class="row">
+            <div class="col-sm-12" id="logo">
+                <a href="#"><img src="stylesheets/greefies/images/logo.gif" /></a>
+            </div>
+        </div>
+
+        <div id="main_content" class="row" style="height:550px">
+            <div class="offset-sm-1 col-sm-10">
+                <div class="table-responsive" style="height:510px">
+                    <table class="table table-sm  table-striped table-hover table-bordered">
+                        <caption style="caption-side:top; font-weight:bold;">產品資料</caption>
+                        <thead>
+                            <tr>
+                                <th class="text-center align-middle" style="width: 10%">品號</th>
+                                <th class="text-center align-middle" style="width: 35%">品名</th>
+                                <th class="text-center align-middle" style="width: 5%">類別編號</th>
+                                <th class="text-center align-middle" style="width: 20%">類別名稱</th>
+                                <th class="text-center align-middle" style="width: 10%">單價</th>
+                                <th class="text-center align-middle" style="width: 10%">庫存量</th>
+                                <th class="text-center align-middle" style="width: 5%">刪除</th>
+                                <th class="text-center align-middle" style="width: 5%">修改</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            prods.forEach(function(prod){ %>
+                            <tr>
+                                <td class="text-center"><%= prod.productid %></td>
+                                <td><%= prod.productname %></td>
+                                <td><%= prod.categoryid %></td>
+                                <td><%= prod.categoryname %></td>
+                                <td class="text-right"><%= prod.unitprice %></td>
+                                <td class="text-right"><%= prod.unitsinstock %></td>
+                                <td class="text-center align-middle"><a href="#" class="delete" data-id="<%= prod.productid %>"><i class="fa fa-trash"></i></a></td>
+                                <td class="text-center align-middle"><a href="#" class="update" data-id="<%= prod.productid %>"><i class="fa fa-pencil-square-o"></i></a></td>
+                            </tr>
+                            <%
+                            });
+                            %>
+                        </tbody>
+                    </table>
+                    <div class="alert alert-dismissible fade" id="alert1"></div>
+                </div>
+                <nav>
+                    <ul class="pagination justify-content-center">                        
+                        <%
+                        for(i=1; i<= pageCount; i++){
+                        %>
+                        <li class="page-item  <%= (activePage==i)?'active':'' %>">
+                            <a class="page-link" href="/ta1-ud_prod-ui?page=<%= i %>"><%= i %></a>                                               
+                        </li>
+                        <!--例如： <li class="page-item active"><a class="page-link" href="/ta1-ud_prod-ui?page=1">1</a></li> -->
+                        <%
+                        }
+                        %>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="w-100" id="footer">
+                <div class="copyright">
+                    <a href="#">
+                        <img src="stylesheets/greefies/images/footer_logo.gif" />
+                    </a>
+                </div>
+                <div class="footer_links">
+                    <a href="#">About us</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Contact us </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

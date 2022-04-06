@@ -1,0 +1,12 @@
+C:\_node\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsproj.CoreCompileInputs.cache
+C:\_node\_workspace\_mySolution1\NodejsWebApp1\bin\Microsoft.NodejsTools.WebRole.dll
+C:\_node 原稿\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsprojAssemblyReference.cache
+C:\_node 原稿\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsproj.CoreCompileInputs.cache
+C:\_node 原稿\_workspace\_mySolution1\NodejsWebApp1\bin\Microsoft.NodejsTools.WebRole.dll
+C:\_node 原稿(新)\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsprojAssemblyReference.cache
+C:\_node 原稿(新)\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsproj.CoreCompileInputs.cache
+C:\_node 原稿(新)\_workspace\_mySolution1\NodejsWebApp1\bin\Microsoft.NodejsTools.WebRole.dll
+C:\_node2\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsproj.AssemblyReference.cache
+C:\_node2\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsproj.CoreCompileInputs.cache
+C:\_node2\_workspace\_mySolution1\NodejsWebApp1\bin\Microsoft.NodejsTools.WebRole.dll
+C:\_node\_workspace\_mySolution1\NodejsWebApp1\obj\Debug\NodejsWebApp1.njsproj.AssemblyReference.cache
