@@ -9,6 +9,8 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodejsConsoleApp1", "Nodejs
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodejsConsoleApp2", "NodejsConsoleApp2\NodejsConsoleApp2.njsproj", "{D08B04AD-0609-477A-B5A4-285AACC890F1}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodejsWebApp2", "NodejsWebApp2\NodejsWebApp2.njsproj", "{73C1C7BE-5AE7-4F78-9C3A-742A6DE8E1D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D08B04AD-0609-477A-B5A4-285AACC890F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D08B04AD-0609-477A-B5A4-285AACC890F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D08B04AD-0609-477A-B5A4-285AACC890F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C1C7BE-5AE7-4F78-9C3A-742A6DE8E1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C1C7BE-5AE7-4F78-9C3A-742A6DE8E1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C1C7BE-5AE7-4F78-9C3A-742A6DE8E1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C1C7BE-5AE7-4F78-9C3A-742A6DE8E1D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
