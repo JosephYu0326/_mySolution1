@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ins Prod</title>
+    <link href="stylesheets/bootstrap-5.0.2/bootstrap.min.css" rel="stylesheet" />    
+    <script src="javascripts/jquery-3.6.0.min.js"></script>
+    <title>新增產品資料</title>
+    <script type="text/javascript">
+        $(function () {
+            $("#form1").submit(function () {
+                $.ajax({
+                    method: 'get',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        //使用bootstrap's inline alert
+                        if (data.result == 'success')
+                            $("#alert1").html(`<strong>資料新增(${data.rowCount}筆)成功...</strong>`).addClass('alert-primary show');
+                        else
+                            $("#alert1").html(`<strong>資料新增失敗...</strong><h6>${data.errMsg}</h6>`).addClass('alert-danger show');
+
+                        window.setTimeout(function () {
+                            $("#alert1").html('').removeClass('alert-primary alert-danger show');
+                        }, 2000);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        //使用bootstrap's inline alert
+                        $("#alert1").html(`<strong>您的請求發生錯誤了...</strong><h6>${textStatus ? ('狀態: ' + textStatus) : ''}${errorThrown ? ('<br/>說明:' + errorThrown) : ''}</h6>`).addClass('alert-danger show');
+                        window.setTimeout(function () {
+                            $("#alert1").html('').removeClass('alert-danger show');
+                        }, 2000);
+                    }
+                });
+                return false;
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="offset-sm-3 col-sm-6">
+                <h3 class="text-center mb-4">新增產品資料</h3>
+                <form method="post" action="/ta2-insprod" id="form1"  class="border shadow p-5" >
+                    <div class="mb-3">
+                        <label for="firstname" class="form-label">品名</label>
+                        <input class="form-control" type="text" name="productname" id="productname" placeholder="請輸入品名" value="台灣啤酒" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoryid" class="form-label">類別編號</label>
+                        <input class="form-control" type="text" name="categoryid" id="categoryid" placeholder="請輸入類別編號" value="1" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitprice" class="form-label">單價</label>
+                        <input class="form-control" type="text" name="unitprice" id="unitprice" placeholder="請輸入單價" value="50.5" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitsinstock" class="form-label">庫存量</label>
+                        <input class="form-control" type="text" name="unitsinstock" id="unitsinstock" placeholder="請輸入庫存量" value="123" />
+                    </div> 
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">新增</button>                        
+                    </div>
+                    <div class="alert alert-dismissible fade" id="alert1"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

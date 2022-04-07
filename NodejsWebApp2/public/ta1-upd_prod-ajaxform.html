@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>修改產品資料</title>    
+    <link href="stylesheets/bootstrap-5.0.2/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row" id="div1">
+            <div class="offset-sm-1 col-sm-10">
+                <h5 class="text-center my-4">產品資料修改</h5>
+                <form method="post" action="/ta1-updprod" id="upd_prod-ajaxform" class="border shadow p-3">
+                    <div class="mb-3">
+                        <label for="productid">品號</label>
+                        <input readonly  class="form-control  form-control-sm" type="text" name="productid" id="productid" placeholder="請輸入品號"  />
+                    </div>
+                    <div class="mb-3">
+                        <label for="productname">品名</label>
+                        <input class="form-control  form-control-sm" type="text" name="productname" id="productname" placeholder="請輸入品名" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoryid">類別編號</label>
+                        <input class="form-control  form-control-sm" type="text" name="categoryid" id="categoryid" placeholder="請輸入類別編號" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitprice">單價</label>
+                        <input class="form-control" type="text" name="unitprice" id="unitprice" placeholder="請輸入單價" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitsinstock">庫存量</label>
+                        <input class="form-control  form-control-sm" type="text" name="unitsinstock" id="unitsinstock" placeholder="請輸入庫存量" />
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">修改</button>
+                    </div>
+                    <div class="alert alert-dismissible fade" id="updform-alert1"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

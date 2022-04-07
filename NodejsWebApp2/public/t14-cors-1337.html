@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>訊息視窗</title>
+    <link href="stylesheets/greefies/style.css" rel="stylesheet" />
+    <link href="stylesheets/bootstrap-5.0.2/bootstrap.min.css" rel="stylesheet" />
+    <script src="javascripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#button1").click(function () {
+                $.ajax({
+                    method: 'get',
+                    url: 'http://localhost:1338/t14-cors-1338?time=' + new Date().getTime(),
+                    success: function (data) {
+                        $("#msg-box").html(`伺服器(port:1338)回應: ${data}<br/>${new Date().toString()}`);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $("#msg-box").html(
+                            `${textStatus}:${errorThrown ? errorThrown : 'Ajax請求失敗了...'}<br/>${new Date().toString()}`
+                        );
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="container border shadow mt-5 w-50">
+        <div class="row">
+            <div class="col-sm-12" id="logo">
+                <a href="#"><img src="stylesheets/greefies/images/logo.gif"  /></a>
+            </div>
+        </div>
+        <div id="main_content" class="row" style="height:150px;">
+            <div class="offset-sm-2 col-sm-10">
+                <div>
+                    <div class="h5 " id="msg-box" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-sm-4 col-sm-8">
+                <button class="btn btn-primary mb-5" type="button" id="button1">發送CORS請求</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="w-100" id="footer">
+                <div class="copyright">
+                    <a href="#">
+                        <img src="stylesheets/greefies/images/footer_logo.gif" />
+                    </a>
+                </div>
+                <div class="footer_links">
+                    <a href="#">About us</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Contact us </a>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>

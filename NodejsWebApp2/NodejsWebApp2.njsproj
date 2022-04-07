@@ -4,6 +4,8 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>NodejsWebApp2</Name>
     <RootNamespace>NodejsWebApp2</RootNamespace>
+    <LaunchUrl>aaa</LaunchUrl>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -11,7 +13,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>73c1c7be-5ae7-4f78-9c3a-742a6de8e1d0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>myserver01.js</StartupFile>
+    <StartupFile>myExpressServer.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -19,7 +21,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <NodejsPort>1337</NodejsPort>
-    <StartWebBrowser>true</StartWebBrowser>
+    <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,12 +30,218 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="myExpressServer.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="myserver01.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\images\bg-footer.png" />
+    <Content Include="public\images\bg-page.png" />
+    <Content Include="public\images\bg-page2.png" />
+    <Content Include="public\images\bg_page.png" />
+    <Content Include="public\images\close.png" />
+    <Content Include="public\images\footer-bg.png" />
+    <Content Include="public\images\large\blue.jpg" />
+    <Content Include="public\images\large\fan.jpg" />
+    <Content Include="public\images\large\green.jpg" />
+    <Content Include="public\images\large\milk.jpg" />
+    <Content Include="public\images\large\orange.jpg" />
+    <Content Include="public\images\large\purple.jpg" />
+    <Content Include="public\images\large\red.jpg" />
+    <Content Include="public\images\large\slide1.jpg" />
+    <Content Include="public\images\large\slide2.jpg" />
+    <Content Include="public\images\large\slide3.jpg" />
+    <Content Include="public\images\large\slide4.jpg" />
+    <Content Include="public\images\large\slide5.jpg" />
+    <Content Include="public\images\large\slide6.jpg" />
+    <Content Include="public\images\large\weight.jpg" />
+    <Content Include="public\images\large\yellow.jpg" />
+    <Content Include="public\images\open.png" />
+    <Content Include="public\images\pencils.jpg" />
+    <Content Include="public\images\small\blue.jpg" />
+    <Content Include="public\images\small\blue_h.jpg" />
+    <Content Include="public\images\small\green.jpg" />
+    <Content Include="public\images\small\green_h.jpg" />
+    <Content Include="public\images\small\orange.jpg" />
+    <Content Include="public\images\small\orange_h.jpg" />
+    <Content Include="public\images\small\purple.jpg" />
+    <Content Include="public\images\small\purple_h.jpg" />
+    <Content Include="public\images\small\red.jpg" />
+    <Content Include="public\images\small\red_h.jpg" />
+    <Content Include="public\images\small\slide1.jpg" />
+    <Content Include="public\images\small\slide1_h.jpg" />
+    <Content Include="public\images\small\slide2.jpg" />
+    <Content Include="public\images\small\slide2_h.jpg" />
+    <Content Include="public\images\small\slide3.jpg" />
+    <Content Include="public\images\small\slide3_h.jpg" />
+    <Content Include="public\images\small\slide4.jpg" />
+    <Content Include="public\images\small\slide4_h.jpg" />
+    <Content Include="public\images\small\slide5.jpg" />
+    <Content Include="public\images\small\slide5_h.jpg" />
+    <Content Include="public\images\small\slide6.jpg" />
+    <Content Include="public\images\small\slide6_h.jpg" />
+    <Content Include="public\images\small\yellow.jpg" />
+    <Content Include="public\images\small\yellow_h.jpg" />
+    <Content Include="public\images\ui-anim_basic_16x16.gif" />
+    <Content Include="public\images\welcome.jpg" />
+    <Content Include="public\images\_notes\dwsync.xml" />
+    <Content Include="public\javascripts\bootstrap-5.0.2\bootstrap.js" />
+    <Content Include="public\javascripts\bootstrap-5.0.2\bootstrap.js.map" />
+    <Content Include="public\javascripts\bootstrap-5.0.2\bootstrap.min.js" />
+    <Content Include="public\javascripts\bootstrap-5.0.2\bootstrap.min.js.map" />
+    <Content Include="public\javascripts\image-scale.min.js" />
+    <Content Include="public\javascripts\jquery-3.6.0.min.js" />
+    <Content Include="public\javascripts\jquery-ui-1.12.1\jquery-ui.js" />
+    <Content Include="public\javascripts\jquery-ui-1.12.1\jquery-ui.min.js" />
+    <Content Include="public\javascripts\jquery.ui.datepicker-zh-TW.js" />
+    <Content Include="public\javascripts\smartmenus-1.0.0\jquery.smartmenus.js" />
+    <Content Include="public\javascripts\smartmenus-1.0.0\jquery.smartmenus.min.js" />
+    <Content Include="public\msg-template.html" />
+    <Content Include="public\mypage.html" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\css\animate.css" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\css\anythingslider.css" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\css\theme-construction.css" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\css\theme-cs-portfolio.css" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\css\theme-metallic.css" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\css\theme-minimalist-round.css" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\css\theme-minimalist-square.css" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\images\arrows-metallic.png" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\images\arrows-minimalist.png" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\images\construction.gif" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\images\cs-portfolio.png" />
+    <Content Include="public\stylesheets\anythingSlider1.9.2\images\default.png" />
+    <Content Include="public\stylesheets\bootstrap-5.0.2\bootstrap.min.css" />
+    <Content Include="public\stylesheets\greefies\images\box_icon.gif" />
+    <Content Include="public\stylesheets\greefies\images\bullet.gif" />
+    <Content Include="public\stylesheets\greefies\images\clock.gif" />
+    <Content Include="public\stylesheets\greefies\images\clock.png" />
+    <Content Include="public\stylesheets\greefies\images\contact_icon.gif" />
+    <Content Include="public\stylesheets\greefies\images\contact_info_bg.gif" />
+    <Content Include="public\stylesheets\greefies\images\footer_logo.gif" />
+    <Content Include="public\stylesheets\greefies\images\green_box_bg.gif" />
+    <Content Include="public\stylesheets\greefies\images\left_content_bg.gif" />
+    <Content Include="public\stylesheets\greefies\images\left_nav_arrow.gif" />
+    <Content Include="public\stylesheets\greefies\images\logo.gif" />
+    <Content Include="public\stylesheets\greefies\images\menu_arrow.gif" />
+    <Content Include="public\stylesheets\greefies\images\news_icon.gif" />
+    <Content Include="public\stylesheets\greefies\images\orange_bullet.gif" />
+    <Content Include="public\stylesheets\greefies\images\phone_icon.gif" />
+    <Content Include="public\stylesheets\greefies\images\pic1.jpg" />
+    <Content Include="public\stylesheets\greefies\images\pic2.jpg" />
+    <Content Include="public\stylesheets\greefies\images\pic3.jpg" />
+    <Content Include="public\stylesheets\greefies\images\read_more_bg.gif" />
+    <Content Include="public\stylesheets\greefies\images\read_more_bg_white.gif" />
+    <Content Include="public\stylesheets\greefies\images\right_nav.gif" />
+    <Content Include="public\stylesheets\greefies\images\right_nav_a.gif" />
+    <Content Include="public\stylesheets\greefies\images\search.gif" />
+    <Content Include="public\stylesheets\greefies\images\search_box_bg.gif" />
+    <Content Include="public\stylesheets\greefies\images\testimonials_icon.gif" />
+    <Content Include="public\stylesheets\greefies\style.css" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\jquery-ui.css" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\base\jquery-ui.min.css" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-bg_glass_20_555555_1x400.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-bg_inset-soft_25_000000_1x100.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-icons_222222_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-icons_a83300_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\jquery-ui.css" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\jquery-ui.js" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\jquery-ui.min.css" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\jquery-ui.min.js" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-icons_222222_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\jquery-ui.css" />
+    <Content Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\jquery-ui.min.css" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-blue\sm-blue.css" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\mixins\_round-corners-last-item.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\mixins\_sub-items-indentation.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\sm-clean.css" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\sm-clean.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\_mixins.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\_sm-clean.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-core-css.css" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\mixins\_sub-items-indentation.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\sm-mint.css" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\sm-mint.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\_mixins.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\_sm-mint.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\mixins\_sub-items-indentation.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\sm-simple.css" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\sm-simple.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\_mixins.scss" />
+    <Content Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\_sm-simple.scss" />
+    <Content Include="public\t07-login-form.html" />
+    <Content Include="public\t08-upload-form.html" />
+    <Content Include="public\t11-login-form.html" />
+    <Content Include="public\t12-emps-template.html" />
+    <Content Include="public\t13-prods-template.html" />
+    <Content Include="public\t14-cors-1337.html" />
+    <Content Include="public\ta1-ud_prod-template.html" />
+    <Content Include="public\ta1-upd_prod-ajaxform.html" />
+    <Content Include="public\ta2-ins_prod-form.html" />
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\images\large\" />
+    <Folder Include="public\images\small\" />
+    <Folder Include="public\images\_notes\" />
+    <Folder Include="public\javascripts\" />
+    <Folder Include="public\javascripts\bootstrap-5.0.2\" />
+    <Folder Include="public\javascripts\jquery-ui-1.12.1\" />
+    <Folder Include="public\javascripts\smartmenus-1.0.0\" />
+    <Folder Include="public\stylesheets\" />
+    <Folder Include="public\stylesheets\anythingSlider1.9.2\" />
+    <Folder Include="public\stylesheets\anythingSlider1.9.2\css\" />
+    <Folder Include="public\stylesheets\anythingSlider1.9.2\images\" />
+    <Folder Include="public\stylesheets\bootstrap-5.0.2\" />
+    <Folder Include="public\stylesheets\greefies\" />
+    <Folder Include="public\stylesheets\greefies\images\" />
+    <Folder Include="public\stylesheets\jquery-ui-1.12.1\" />
+    <Folder Include="public\stylesheets\jquery-ui-1.12.1\base\" />
+    <Folder Include="public\stylesheets\jquery-ui-1.12.1\base\images\" />
+    <Folder Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\" />
+    <Folder Include="public\stylesheets\jquery-ui-1.12.1\ui-darkness\images\" />
+    <Folder Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\" />
+    <Folder Include="public\stylesheets\jquery-ui-1.12.1\ui-lightness\images\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-blue\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-clean\mixins\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\mixins\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\" />
+    <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\mixins\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

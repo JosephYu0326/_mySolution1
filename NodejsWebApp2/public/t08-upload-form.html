@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Upload</title>
+    <link href="stylesheets/bootstrap-5.0.2/bootstrap.min.css" rel="stylesheet" />
+    <script src="javascripts/jquery-3.6.0.min.js"></script>
+    <title>表單及檔案上傳</title>
+    <script type="text/javascript">
+        $(function () {
+            //當選檔變更時,立即預覽之前被選擇的照片
+            $("#upload").change(function () {
+                previewImg(this.files);
+            });
+        });
+        function previewImg(files) {
+            if (files.length == 0)
+                return;
+            var file = files[0];
+            var fr = new FileReader();
+            //註冊當選檔被讀取完成後之事件處理器
+            fr.onload =
+                function () {
+                    $("#img-preview img").attr({ src: fr.result });
+                    /*  fr.result: The file's contents. 內容如下:
+                        data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA ...
+                    */
+                };
+            fr.readAsDataURL(file);
+        }
+        $(function () {
+            //當使用者上傳一個檔案後將進入Web Server回應的新頁面。
+            //又當使用者「返回前頁」時，需要「重新預覽」前回點選擬上傳的圖片。
+            previewImg($("#upload")[0].files);
+        });
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="offset-sm-3 col-sm-6 my-5">
+                <h3 class="text-center mb-4">表單及檔案上傳</h3>
+                <form method="post" action="/upload" enctype="multipart/form-data" id="form1">
+                    <div class="mb-3">
+                        <label class="form-label" for="username">使用者名稱</label>
+                        <input class="form-control" type="text" name="username" id="username" placeholder="請輸入使用者名稱" value="捏小倩" />
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <label class="form-label" for="upload">上傳照片</label>
+                                <input class="form-control" type="file" name="upload" id="upload" accept="image/*" />
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-control" id="img-preview" style="height:120px;">
+                                    <img src="" class="h-100 w-100" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">送出</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
