@@ -4,7 +4,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>NodejsWebApp2</Name>
     <RootNamespace>NodejsWebApp2</RootNamespace>
-    <LaunchUrl>mypage.html</LaunchUrl>
+    <LaunchUrl>/template1</LaunchUrl>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -205,9 +205,17 @@
     <Content Include="public\ta1-ud_prod-template.html" />
     <Content Include="public\ta1-upd_prod-ajaxform.html" />
     <Content Include="public\ta2-ins_prod-form.html" />
+    <Content Include="public\template1.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="views\msg-template.ejs" />
+    <Content Include="views\t12-emps-template.ejs" />
+    <Content Include="views\t13-prods-template.ejs" />
+    <Content Include="views\ta1-ud_prod-template.ejs" />
+    <Content Include="views\template1.ejs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
@@ -242,6 +250,7 @@
     <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-mint\mixins\" />
     <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\" />
     <Folder Include="public\stylesheets\smartmenus-1.0.0\css\sm-simple\mixins\" />
+    <Folder Include="views\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

@@ -13,7 +13,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2f14b74a-ac82-42ed-bc96-d5e057f3713b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>T12-index.js</StartupFile>
+    <StartupFile>T06-index.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
