@@ -4,7 +4,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>NodejsWebApp2</Name>
     <RootNamespace>NodejsWebApp2</RootNamespace>
-    <LaunchUrl>/login</LaunchUrl>
+    <LaunchUrl>t08-upload-form.html</LaunchUrl>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -218,6 +218,7 @@
     <Content Include="views\template1.ejs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="uploads\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\images\large\" />

@@ -5,8 +5,40 @@ app.listen(1337, function () {
 });
 
 app.use("/", express.static(__dirname + '/public'));
+app.use("/uploads", express.static(__dirname + '/uploads'));
+
 app.set("views", "./views");
 app.set("view engine", "ejs");
+
+let multer = require('multer');
+
+let storage = multer.diskStorage({
+    destination: function (req,file,cb) {
+        cb(null,"uploads")
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname);
+    }
+});
+
+
+let upload = multer({ "storage": storage });
+app.post("/upload", upload.single('upload'), function (req,res,next) {
+    if (req.file) {
+        res.render("msg-template.ejs", {
+            message: `${req.body.username}您好!檔案(${req.file.originalname})上傳成功...`,
+            imgurl: req.file.path
+        });
+    }
+    else {
+        res.render("msg-template.ejs", {
+            message: `您上傳無效的檔案...`,
+            imgurl: ""
+        });
+    }
+})
+
+
 
 app.get("/login", function (req, res, next) {
     if (req.query.username == '捏小倩' && req.query.password == '令采臣') {
