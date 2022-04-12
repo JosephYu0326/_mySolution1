@@ -21,6 +21,23 @@ app.get("/login", function (req, res, next) {
     }
 })
 
+let bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false}));
+
+
+app.post("/login", function (req, res, next) {
+    if (req.body.username == '捏小倩' && req.body.password == '令采臣') {
+        res.render("template1.ejs", {
+            title: `歡迎${req.body.username}`, today: new Date().toString(),
+            nums: []
+
+        });
+    }
+    else {
+        res.redirect("t07-login-form.html");
+    }
+})
+
 
 
 
