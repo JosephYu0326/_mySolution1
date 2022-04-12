@@ -16,13 +16,25 @@
     }
     %>
     </ul>
-    <script>
+
+    <hr />
+
+    <%
+    nums.forEach(function(value,index){
+    %>
+        <%-`${value}-${index}<br/>`%>
+    <%
+    })
+    %>
+
+
+    <!--<script>
         let nums = [10, 20, 30]
         let total = 0;
-        nums.forEach(function (value, index) {
+        nums.foreach(function (value, index) {
             total += value;
             console.log(`${value}-${index}<br>`);
         });
-    </script>
+    </script>-->
 </body>
 </html>

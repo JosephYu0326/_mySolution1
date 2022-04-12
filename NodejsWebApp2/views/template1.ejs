@@ -6,7 +6,8 @@
     <title><%= title %></title>
 </head>
 <body>
-    <h1 style="text-align:center; color:blue;"><%= today %></h1>
+    <h1 style="text-align:center;"><%= title %></h1>
+    <h4 style="text-align:center; color:blue;"><%= today %></h4>
     <ul>
     <% 
     for(let i=0; i<nums.length; i++){ 
@@ -16,5 +17,15 @@
     }
     %>
     </ul>
+
+    <hr />
+
+    <%
+    nums.forEach(function(value,index){
+    %>
+        <%-`${value}-${index}<br/>`%>
+    <%
+    })
+    %>
 </body>
 </html>
