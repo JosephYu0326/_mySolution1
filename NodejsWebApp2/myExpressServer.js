@@ -38,6 +38,20 @@ app.post("/upload", upload.single('upload'), function (req,res,next) {
     }
 })
 
+app.get("/emps/:empid", function (req, res, next) {
+
+    res.send(`<h1>歡迎${req.params.empid}登入!</h1>`);
+});
+
+app.get(/0[1-9]-\d{7,8}$/, function (req, res, next) {
+
+    res.send(`<h1>歡迎 path(${req.path})進入!</h1>`);
+});
+
+let regExp = /0[1-9]-\d{7,8}$/;
+console.log(`regExp.test("02-12345678") = ${ regExp.test("02-12345678")}`);
+
+
 
 
 app.get("/login", function (req, res, next) {
