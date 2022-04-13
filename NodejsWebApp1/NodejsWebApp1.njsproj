@@ -5,8 +5,7 @@
     <Name>NodejsWebApp1</Name>
     <RootNamespace>NodejsWebApp1</RootNamespace>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
-    <LaunchUrl>
-    </LaunchUrl>
+    <LaunchUrl>t12-emps-ui</LaunchUrl>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -14,7 +13,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2f14b74a-ac82-42ed-bc96-d5e057f3713b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>T08-index.js</StartupFile>
+    <StartupFile>T12-index.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

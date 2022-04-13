@@ -10,6 +10,55 @@ app.use("/uploads", express.static(__dirname + '/uploads'));
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
+
+let mysql = require('mysql');
+app.get("/get-emps", function (req, res, next) {
+    let connection = mysql.createConnection({
+        host: '127.0.0.1',
+        port: 3306,
+        user: 'root2',
+        password: 'root2',
+        database: 'northwind'
+    });
+    connection.connect(function (error) {
+        if (error) {
+            console.log(error.message);
+            res.status(403).end(error.message);
+            return
+        }
+        console.log(`資料庫連線成功...`);
+        //res.send(`資料庫連線成功...`);
+        let sql = `select employeeid,firstname,lastname,title,
+                   date_format(birthdate, '%Y/%m/%d') birthdate,
+                   date_format(hiredate, '%Y/%m/%d') hiredate
+                   from employees`;
+        connection.query(sql, function (error, results, fields) {
+
+
+            if (error) {
+                console.log(error.message);
+                res.status(403).end(error.message);
+                return
+            }
+            console.log(JSON.stringify(results))
+            //res.send(results);
+            res.render("t12-emps-template.ejs", { emps: results });
+
+            connection.end();
+        });
+
+    });
+
+});
+
+
+
+
+
+
+
+
+
 let multer = require('multer');
 
 let storage = multer.diskStorage({
