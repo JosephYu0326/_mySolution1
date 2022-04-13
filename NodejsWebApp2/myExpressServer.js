@@ -48,10 +48,15 @@ app.get(/0[1-9]-\d{7,8}$/, function (req, res, next) {
     res.send(`<h1>歡迎 path(${req.path})進入!</h1>`);
 });
 
-let regExp = /0[1-9]-\d{7,8}$/;
-console.log(`regExp.test("02-12345678") = ${ regExp.test("02-12345678")}`);
+let regExp = /^0[1-9]-\d{7,8}$/;
+console.log(`regExp.test("02-12345678") = ${regExp.test("02-12345678")}`);
+//true
+console.log(`regExp.test("a02-12345678") = ${ regExp.test("a02-12345678")}`);
+//false 
 
 
+let router = require('./my-router.js');
+app.use("/birds",router)
 
 
 app.get("/login", function (req, res, next) {
