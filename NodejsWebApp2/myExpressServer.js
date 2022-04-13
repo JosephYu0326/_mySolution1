@@ -21,6 +21,35 @@ let storage = multer.diskStorage({
     }
 });
 
+let session = require('express-session');
+app.use(session({
+    secret: 'abcde'
+}));
+
+app.get("/test-session", function (req, res,next) {
+    if (req.session.authenticated) {
+        res.render("msg-template.ejs", {
+            message: `歡迎${req.session.username}光臨本網站...`,
+            imgurl : "images/welcome.jpg"
+        });
+    }
+    else {
+        res.redirect("t11-login-form.html")
+    }
+})
+
+app.get("/t11-login", function (req, res, next) {
+    if (req.query.username == '捏小倩' && req.query.password == '令采臣') {
+        req.session.authenticated = true;
+        req.session.username = req.query.username;
+        res.redirect("/test-session")
+    }
+    else {
+        res.redirect("t11-login-form.html")
+    }
+});
+
+
 
 let upload = multer({ "storage": storage });
 app.post("/upload", upload.single('upload'), function (req,res,next) {
